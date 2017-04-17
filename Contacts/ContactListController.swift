@@ -9,6 +9,7 @@
 import UIKit
 
 private var contactCellIdentifier = "contactCell"
+private var contactSegueIdentifier = "showContact"
 
 class ContactListController: UITableViewController {
     
@@ -49,7 +50,18 @@ class ContactListController: UITableViewController {
         return cell
     }
    
+    // MARK: Navigation
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == contactSegueIdentifier {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let contact = contacts[indexPath.row]
+                
+                guard let navigationController = segue.destination as? UINavigationController, let contactDetailController = navigationController.topViewController as? ContactDetailController else { return }
+                contactDetailController.contact = contact
+            }
+        }
+    }
 
    
 

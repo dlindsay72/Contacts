@@ -13,9 +13,23 @@ private var detailCellIdentifier = "detailCell"
 class ContactDetailController: UITableViewController {
     
     var contact: Contact?
-
+    
+    @IBOutlet weak var profileView: UIImageView!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var streetLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var stateLabel: UILabel!
+    @IBOutlet weak var zipCodeLabel: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureView()
 
     }
 
@@ -23,17 +37,18 @@ class ContactDetailController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    func configureView() {
+        guard let contact = contact else { return }
+        
+        profileView.image = contact.image
+        nameLabel.text = "\(contact.firstName) \(contact.lastName)"
+        phoneNumberLabel.text = contact.phone
+        emailLabel.text = contact.email
+        streetLabel.text = contact.street
+        cityLabel.text = contact.city
+        stateLabel.text = contact.state
+        zipCodeLabel.text = contact.zip
     }
 
 
