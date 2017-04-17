@@ -8,6 +8,8 @@
 
 import UIKit
 
+private var detailCellIdentifier = "detailCell"
+
 class ContactDetailController: UITableViewController {
     
     var contact: Contact?
